@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="Form/form.css">
+    <title>MultiStep-Form</title>
+
+</head>
+
+<body>
+    <div id="svg_wrap"></div>
+
+    <h1>Data Entry Form</h1>
+    <section>
+        <p>App Info</p>
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Value" />
+        <div id="box">
+            <input type="submit" value="add" onclick="addmore()" />
+        </div>
+        <input type="hidden" id="count" value="1" />
+
+    </section>
+
+    <section>
+        <p>Network</p>
+        <input type="text" placeholder="Network Name" />
+        <input type="text" placeholder="Value" />
+        <div id="network_box">
+            <input type="submit" value="add" onclick="add_network()" />
+        </div>
+        <input type="hidden" id="network_count" value="1" />
+    </section>
+
+    <section>
+        <p>Category's</p>
+        <select name="Native" id="native">
+            <option value="banner">Select option</option>
+            <option value="banner">Main Banner</option>
+            <option value="native">Main Native</option>
+            <option value="interstitial">Main Interstitial</option>
+        </select>
+    </section>
+
+    <section>
+        <p>General condtitions</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+    </section>
+
+    <div class="button" id="prev">&larr; Previous</div>
+    <div class="button" id="next">Next &rarr;</div>
+    <div class="button" id="submit">Agree and send application</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="Form/form.js"></script>
+
+<script>
+    function addmore() {
+        var boxcount = $("#count").val();
+        boxcount++;
+        $("#count").val(boxcount);
+
+        $("#box").append('<div class="box" id="box_loop_' + boxcount +
+            '"><input type="text" placeholder="Value" /><input type="submit" value="Remove me" onclick=remove_me("' +
+            boxcount + '") />');
+        // console.log(boxcount);
+    }
+
+    function remove_me(boxcount) {
+        $("#box_loop_" + boxcount).remove();
+
+        var boxcount = $("#count").val();
+        boxcount--;
+        $("#count").val(boxcount);
+        // console.log(boxcount);
+    }
+
+    function add_network() {
+        var box = $("#network_count").val();
+        box++;
+        $("#network_count").val(box);
+
+        $("#network_box").append('<div class="box" id="box_loop_network' + box +
+            '"><input type="text" placeholder="Value" /><input type="submit" value="Remove me" onclick=rem("' +
+            box + '") />');
+        // console.log(boxcount);
+    }
+
+    function rem(box) {
+        $("#box_loop_network" + box).remove();
+
+        var box = $("#network_count").val();
+        box--;
+        $("#network_count").val(box);
+        // console.log(boxcount);
+    }
+</script>
+
+</html>
